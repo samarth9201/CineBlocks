@@ -1,9 +1,12 @@
 pragma solidity ^0.5.1;
 
+import "./SafeMath.sol";
 import "./MovieContract.sol";
 
 contract FactoryContract {
   
+    using SafeMath for uint256;
+
 	uint256 public contractCount;
 	address[] public contractContainer;
 	address public recentContract;

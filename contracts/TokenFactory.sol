@@ -1,5 +1,8 @@
 pragma solidity ^0.5.1;
 
+import "./SafeMath.sol";
+
+
  contract ERC20Interface {
      // Get the total token supply
      function totalSupply() public returns (uint256 _totalSupply);
@@ -29,6 +32,8 @@ pragma solidity ^0.5.1;
  }
 
  contract TokenFactory is ERC20Interface {
+      using SafeMath for uint256;
+
       string public symbol;
       string public name;
       uint8 public decimals = 18;

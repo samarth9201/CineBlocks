@@ -1,8 +1,11 @@
 pragma solidity ^0.5.1;
 
 import "./TokenFactory.sol";
+import "./SafeMath.sol";
 
 contract MovieContract {
+      using SafeMath for uint256;
+
 	  string public movieName;
 	  string public tokenName;
 	  uint256 public creationDate;
