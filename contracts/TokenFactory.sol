@@ -27,3 +27,38 @@ pragma solidity ^0.5.1;
      // Triggered whenever approve(address _spender, uint256 _value) is called.
      event Approval(address indexed _owner, address indexed _spender, uint256 _value);
  }
+
+ contract TokenFactory is ERC20Interface {
+      string public symbol;
+      string public name;
+      uint8 public decimals = 18;
+      uint256 public TotalSupply;
+    
+
+     // Owner of this contract
+     address public owner;
+
+     // Balances for each account
+     mapping(address => uint256) public balances;
+
+     // Owner of account approves the transfer of an amount to another account
+     mapping(address => mapping (address => uint256)) allowed;
+
+     // Functions with this modifier can only be executed by the owner
+     modifier onlyOwner() {
+         require(msg.sender != owner); {
+
+          }
+          _;
+      }
+
+      // Constructor
+      constructor(string memory _symbol, string memory _name, uint256 _initalSupply) public{
+          owner = msg.sender;
+          balances[msg.sender] = _initalSupply;
+          symbol = _symbol;
+          name = _name;
+          TotalSupply = _initalSupply;
+      } 
+
+ 
