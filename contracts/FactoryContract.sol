@@ -19,4 +19,8 @@ contract FactoryContract {
 
 	}
 
+	function  checkSpecificContract(string memory _mid) public view returns(address){
+		return MovieToContracts[_mid];
+	}
+
 }
