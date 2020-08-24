@@ -8,19 +8,19 @@ contract FactoryContract {
 	address[] public contractContainer;
 	address public recentContract;
 
-	mapping(string => address) public MovieToContracts;
+	mapping(uint256 => address) public IdToMovieContracts;
 
 	function newMovieContract(string memory _movieName) public{
 		MovieContract instance = new MovieContract(_movieName,msg.sender);
 		recentContract = address(instance);
 		contractCount++;
 		contractContainer.push(address(instance));
-		MovieToContracts[_movieName] = address(instance);
+		IdToMovieContracts[contractCount] = address(instance);
 
 	}
 
-	function  checkSpecificContract(string memory _mid) public view returns(address){
-		return MovieToContracts[_mid];
+	function  checkSpecificContract(uint256 _id) public view returns(address){
+		return IdToMovieContracts[_id];
 	}
 
 }
