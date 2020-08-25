@@ -29,12 +29,23 @@ constructor(string memory _movieName, address payable _movieCreator) public{
     uint256 deadline;
   }
 
+  struct investorDetails{
+  	string name;
+  	string contactDetails;
+    uint256 tokensBought;
+  }
+
+   movieDetails public movie;
+
+
+  mapping (uint256 => investorDetails)public investors;
+  mapping (address => uint256 ) public investedAmount;
+
   modifier  onlyOwner() { 
     require(msg.sender == owner); 
     _; 
   }
   
-  movieDetails public movie;
 
   function addMovie(string memory _details, string memory _ipfs, uint256 _timeInDays) public onlyOwner{
     movie.name = movieName;
