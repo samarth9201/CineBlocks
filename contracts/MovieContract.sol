@@ -64,8 +64,22 @@ constructor(string memory _movieName, address payable _movieCreator) public{
       tokenName = _name;
       totalSupply = _totalSupply;
       tokenPrice = _price;
-
   }
+
+
+  function buyMovieTokens(string memory _name, string memory _contact) public payable{
+    require (msg.value > 0);
+    token = TokenFactory(tokenAddress);
+    uint256 _numberOfTokens = msg.value.div(tokenPrice);
+    address _to = msg.sender;
+
+    require(token.balanceOf(address(this)) >= _numberOfTokens, "Token Quantity Exceeded");
+    investorCount++;
+    investors[investorCount] = investorDetails(_name, _contact,_to,_numberOfTokens);
+    investedAmount[_to] = msg.value;
+    token.transfer(_to,_numberOfTokens);
+  }
+    
   
   
   
